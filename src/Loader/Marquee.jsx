@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTheme } from "../context/ThemeContext";
-import "./marquee.css";
+import "./Marquee.css";
 
 const Marquee = ({ items, textColor }) => {
     const { theme } = useTheme();

@@ -10,7 +10,7 @@
   <p align="center">
     A modern, responsive portfolio website built with React, featuring dynamic themes, smooth animations, and an intuitive user interface.
     <br />
-    <a href="https://your-portfolio-url.com"><strong>View Demo »</strong></a>
+    <a href="https://modern-portfolio-peach-ten.vercel.app/"><strong>View Demo »</strong></a>
   </p>
 </div>
 
@@ -173,17 +173,3 @@ npm run build
 ## 📝 License
 This project is open source and available under the [MIT License](LICENSE).
 
----
-
-⭐ Star this repo if you find it helpful!
-
-
-
-Save this content in a file named `README.md` at the root of your project. Remember to:
-1. Replace "yourusername" with your actual GitHub username
-2. Update the contact information with your actual details
-3. Add any specific installation instructions if needed
-4. Update the project structure if it differs from your actual structure
-5. Add any additional sections that might be relevant to your project
-
-The markdown format will automatically r

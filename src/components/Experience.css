@@ -1,0 +1,401 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --exp-bg-dark: #0a0a0a;
+    --exp-bg-light: #f5f6fa;
+    --exp-card-bg-dark: rgba(25, 25, 25, 0.96);
+    --exp-card-bg-light: #fff;
+    --exp-card-border-dark: 1.5px solid rgba(255, 255, 255, 0.07);
+    --exp-card-border-light: 1.5px solid #e1e5ea;
+    --exp-card-shadow-dark: 0 6px 32px 0 rgba(0, 0, 0, 0.45);
+    --exp-card-shadow-light: 0 6px 32px 0 rgba(40, 40, 80, 0.07);
+    --exp-text-dark: #fff;
+    --exp-text-light: #23272f;
+    --exp-secondary-dark: rgba(255, 255, 255, 0.8);
+    --exp-secondary-light: #444950;
+    --exp-grid-dark: rgba(255, 255, 255, 0.05);
+    --exp-grid-light: rgba(60, 60, 60, 0.04);
+}
+
+.expUnique-section {
+    position: relative;
+    min-height: 90vh;
+    background: var(--exp-bg-dark);
+    overflow: hidden;
+    padding: 0;
+    color: var(--exp-text-dark);
+    --accent-color: #64ffda;
+    transition: background 0.3s, color 0.3s;
+}
+
+.expUnique-section.light {
+    background: var(--exp-bg-light);
+    color: var(--exp-text-light);
+}
+
+.expUnique-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.expUnique-gridOverlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--exp-grid-dark) 1px, transparent 1px),
+        linear-gradient(90deg, var(--exp-grid-dark) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    animation: expUnique-gridFloat 20s linear infinite;
+}
+
+.expUnique-section.light .expUnique-gridOverlay {
+    background-image:
+        linear-gradient(var(--exp-grid-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--exp-grid-light) 1px, transparent 1px);
+}
+
+.expUnique-glowSphere {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    filter: blur(100px);
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: expUnique-spherePulse 10s ease-in-out infinite;
+}
+
+.expUnique-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.expUnique-header {
+    text-align: center;
+    margin-bottom: 6rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: expUnique-fadeInUp 0.8s ease forwards;
+}
+
+.expUnique-subtitle {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+}
+
+.expUnique-timelineContainer {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 4rem;
+}
+
+.expUnique-timelineContainer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.expUnique-timelineItem {
+    position: relative;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: expUnique-slideIn 0.8s ease forwards;
+    animation-delay: calc(var(--expUnique-itemIndex) * 0.2s);
+}
+
+.expUnique-timelineMarker {
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.expUnique-markerDot {
+    width: 16px;
+    height: 16px;
+    background: var(--expUnique-itemColor);
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px var(--expUnique-itemColor);
+}
+
+.expUnique-markerLine {
+    width: 1px;
+    flex-grow: 1;
+    background: linear-gradient(to bottom, var(--expUnique-itemColor), transparent);
+    margin-top: 16px;
+}
+
+.expUnique-timelineContent {
+    position: relative;
+    z-index: 1;
+}
+
+.expUnique-card {
+    background: var(--exp-card-bg-dark);
+    border: var(--exp-card-border-dark);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--exp-card-shadow-dark);
+    backdrop-filter: blur(10px);
+    color: var(--exp-text-dark);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+
+.expUnique-section.light .expUnique-card {
+    background: var(--exp-card-bg-light);
+    border: var(--exp-card-border-light);
+    box-shadow: var(--exp-card-shadow-light);
+    color: var(--exp-text-light);
+}
+
+.expUnique-card:hover {
+    transform: translateY(-5px) translateX(5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.13);
+}
+
+.expUnique-cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.expUnique-roleInfo {
+    flex: 1;
+}
+
+.expUnique-roleTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color, #fff);
+}
+
+.expUnique-companyInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--exp-secondary-dark);
+}
+
+.expUnique-section.light .expUnique-companyInfo {
+    color: var(--exp-secondary-light);
+}
+
+.expUnique-companyName {
+    font-weight: 500;
+    color: var(--accent-color, #fff);
+}
+
+.expUnique-location {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.expUnique-periodBadge {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--accent-color, #fff);
+    white-space: nowrap;
+}
+
+.expUnique-cardBody {
+    color: var(--exp-secondary-dark);
+}
+
+.expUnique-section.light .expUnique-cardBody {
+    color: var(--exp-secondary-light);
+}
+
+.expUnique-description {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.expUnique-achievements {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.expUnique-achievements h4 {
+    color: inherit;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.expUnique-achievements ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.expUnique-achievements li {
+    display: flex;
+    gap: 0.75rem;
+    line-height: 1.5;
+}
+
+.expUnique-achievementBullet {
+    color: var(--accent-color, #fff);
+    font-weight: 600;
+}
+
+.expUnique-skills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.expUnique-skills h4 {
+    color: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.expUnique-skillTag {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--expUnique-itemColor);
+    transition: all 0.3s;
+    display: inline-block;
+    margin-top: .5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.expUnique-section.light .expUnique-skillTag {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid #e1e5ea;
+}
+
+.expUnique-skillTag:hover {
+    background: var(--expUnique-itemColor);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@keyframes expUnique-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expUnique-slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes expUnique-gridFloat {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(-30px, -30px);
+    }
+}
+
+@keyframes expUnique-spherePulse {
+
+    0%,
+    100% {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .expUnique-section {
+        padding: 4rem 0;
+    }
+
+    .expUnique-container {
+        padding: 0 1.5rem;
+    }
+
+    .expUnique-timelineContainer {
+        padding-left: 2rem;
+    }
+
+    .expUnique-timelineMarker {
+        left: -2rem;
+    }
+
+    .expUnique-card {
+        padding: 1.5rem;
+    }
+
+    .expUnique-cardHeader {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .expUnique-periodBadge {
+        align-self: flex-start;
+    }
+}
+
+@media (hover: hover) {
+    .expUnique-card {
+        will-change: transform;
+    }
+}

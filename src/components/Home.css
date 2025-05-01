@@ -1,0 +1,429 @@
+:root {
+    --background-primary-light: #faf7f7;
+    --background-primary-dark: #0a0a0a;
+
+    --card-bg-light: #ffffff;
+    --card-bg-dark: rgba(25, 25, 25, 0.96);
+
+    --card-shadow-light: 0 8px 30px rgba(0, 0, 0, 0.05);
+    --card-shadow-dark: 0 6px 32px rgba(0, 0, 0, 0.45);
+
+    --card-border-light: 1px solid #e2e2e2;
+    --card-border-dark: 1.5px solid rgba(255, 255, 255, 0.07);
+
+    --card-content-bg-light: rgba(255, 255, 255, 0.85);
+    --card-content-bg-dark: transparent;
+
+    --grid-color-light: rgba(0, 0, 0, 0.02);
+    --grid-color-dark: rgba(255, 255, 255, 0.03);
+
+    --text-primary-light: #111;
+    --text-primary-dark: #fff;
+
+    --text-secondary-light: #444;
+    --text-secondary-dark: #ccc;
+
+    --accent-color-light: #3366ff;
+    --accent-color-dark: #00e0d8;
+}
+
+/* Light Theme Variable Injection */
+.home.light {
+    --accent-color: var(--accent-color-light);
+    background: var(--background-primary-light);
+    color: var(--text-primary-light);
+}
+
+/* Dark Theme Variable Injection */
+.home:not(.light) {
+    --accent-color: var(--accent-color-dark);
+    background: var(--background-primary-dark);
+    color: var(--text-primary-dark);
+}
+
+.home {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Content Container */
+.home-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    z-index: 2;
+    perspective: 1000px;
+}
+
+/* Floating Cards */
+.floating-card {
+    position: relative;
+    background: var(--card-bg-dark);
+    border: var(--card-border-dark);
+    border-radius: 22px;
+    box-shadow: var(--card-shadow-dark);
+    backdrop-filter: blur(10px);
+    padding: 2px;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+}
+
+.home.light .floating-card {
+    background: var(--card-bg-light);
+    border: var(--card-border-light);
+    box-shadow: var(--card-shadow-light);
+}
+
+.floating-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    pointer-events: none;
+    background: linear-gradient(45deg, transparent, var(--accent-color), transparent);
+    opacity: 0.12;
+}
+
+.card-content {
+    background: var(--card-content-bg-dark);
+    border-radius: 18px;
+    padding: 2rem 3rem;
+    color: inherit;
+}
+
+.home.light .card-content {
+    background: var(--card-content-bg-light);
+}
+
+/* Title Styles */
+.title-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.title-char {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-color), #23272f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transform: translateY(100px);
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: calc(var(--char-index) * 0.1s);
+}
+
+/* Subtitle */
+.subtitle-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.subtitle-char {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 500;
+    color: var(--accent-color);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: calc(var(--char-index) * 0.05s + 0.5s);
+}
+
+/* Resume Button */
+.resume-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 2rem;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    position: relative;
+    box-shadow: 0 2px 24px rgba(80, 80, 120, 0.08);
+    transition: box-shadow 0.3s;
+}
+
+.home.light .resume-button {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+}
+
+.rotating-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: spin 12s linear infinite;
+}
+
+.rotating-text svg {
+    width: 100%;
+    height: 100%;
+}
+
+.rotating-text text {
+    font-size: 12px;
+    fill: var(--accent-color);
+    letter-spacing: 2px;
+}
+
+
+.button-inner {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    transition: transform 0.3s;
+}
+
+.home.light .arrow-icon {
+    color: #111;
+}
+
+/* Background Grid */
+.background-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--grid-color-dark) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color-dark) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    transition: background-image 0.3s;
+}
+
+.home.light .background-grid {
+    background-image:
+        linear-gradient(var(--grid-color-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color-light) 1px, transparent 1px);
+    opacity: 0.05;
+    background-attachment: fixed;
+    backface-visibility: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Glow Effect */
+.glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-color) 0%, #fff 100%, transparent 100%);
+    filter: blur(200px);
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hover Effects */
+.resume-button:hover .button-inner {
+    transform: scale(0.95);
+}
+
+.resume-button:hover .arrow-icon {
+    transform: rotate(-45deg);
+}
+
+.resume-button:hover .rotating-text {
+    animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .home-content {
+        gap: 1.5rem;
+    }
+
+    .card-content {
+        padding: 1.5rem 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .home {
+        padding: 0 0.5rem;
+    }
+
+    .home-content {
+        gap: 1.2rem;
+    }
+
+    .card-content {
+        padding: 1.1rem 1.2rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .home {
+        padding: 0;
+        min-height: 90svh;
+    }
+
+    .home-content {
+        gap: 1rem;
+    }
+
+    .floating-card {
+        border-radius: 16px;
+    }
+
+    .card-content {
+        border-radius: 12px;
+        padding: 1rem 0.8rem;
+    }
+
+    .resume-button {
+        width: 120px;
+        height: 120px;
+        margin-top: 1.2rem;
+    }
+
+    .button-inner {
+        width: 70px;
+        height: 70px;
+    }
+
+    .rotating-text text {
+        font-size: 9px;
+    }
+
+    .title-char {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+    }
+
+    .subtitle-char {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .cursor {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        min-height: 70svh;
+        padding: 0;
+    }
+
+    .home-content {
+        margin: auto;
+        gap: 0.7rem;
+    }
+
+    .floating-card {
+        margin: 0;
+        padding: 0;
+        border-radius: 10px;
+    }
+
+    .card-content {
+        border-radius: 8px;
+        padding: 0;
+    }
+
+    .resume-button {
+        width: 110px;
+        height: 110px;
+        margin-top: 0.8rem;
+    }
+
+    .button-inner {
+        width: 40px;
+        height: 40px;
+    }
+
+    .rotating-text text {
+        font-size: 8px;
+    }
+
+    .title-char {
+        margin: 0;
+        font-size: clamp(1.3rem, 6vw, 2.2rem);
+    }
+
+    .subtitle-char {
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+    }
+
+
+}
+
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .title-char,
+    .subtitle-char {
+        animation: none;
+        transform: none;
+        opacity: 1;
+    }
+
+    .floating-card {
+        transform: none !important;
+    }
+}
+
+/* Performance Optimizations */
+.floating-card,
+.rotating-text,
+.button-inner {
+    will-change: transform;
+}

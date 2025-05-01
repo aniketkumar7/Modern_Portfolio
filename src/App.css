@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .app {
+        padding: 0 20px;
+    }
+
+    .cursor{
+        display: none;
+    }
+
+}

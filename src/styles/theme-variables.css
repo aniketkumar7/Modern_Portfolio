@@ -1,0 +1,24 @@
+
+:root[data-theme="light"] {
+    --background-primary: #ffffff;
+    --background-secondary: #f5f5f5;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-color: #007bff;
+    --card-background: rgba(255, 255, 255, 0.9);
+    --grid-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="dark"] {
+    --background-primary: #121212;
+    --background-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --accent-color: #4dabf7;
+    --card-background: rgba(30, 30, 30, 0.9);
+    --grid-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

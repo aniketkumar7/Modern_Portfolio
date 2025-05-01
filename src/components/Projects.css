@@ -1,0 +1,369 @@
+:root {
+    --accent-color: #64ffda;
+    --projects-bg-dark: #0a0a0a;
+    --projects-bg-light: #f5f6fa;
+    --projects-card-bg-dark: rgba(255, 255, 255, 0.03);
+    --projects-card-bg-light: rgba(0, 0, 0, 0.04);
+    --projects-content-bg-dark: rgba(10, 10, 10, 0.95);
+    --projects-content-bg-light: #fff;
+    --projects-overlay-dark: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.8));
+    --projects-overlay-light: linear-gradient(to bottom, transparent, rgba(245, 246, 250, 0.93));
+    --projects-text-dark: #fff;
+    --projects-text-light: #23272f;
+    --projects-secondary-dark: rgba(255, 255, 255, 0.7);
+    --projects-secondary-light: #555;
+    --projects-tech-bg-dark: rgba(255, 255, 255, 0.1);
+    --projects-tech-bg-light: rgba(0, 0, 0, 0.07);
+    --projects-code-link-bg-dark: rgba(255, 255, 255, 0.1);
+    --projects-code-link-bg-light: rgba(0, 0, 0, 0.07);
+}
+
+.projects-section {
+    --projects-bg: var(--projects-bg-dark);
+    --projects-card-bg: var(--projects-card-bg-dark);
+    --projects-content-bg: var(--projects-content-bg-dark);
+    --projects-overlay-bg: var(--projects-overlay-dark);
+    --projects-text: var(--projects-text-dark);
+    --projects-secondary: var(--projects-secondary-dark);
+    --projects-tech-bg: var(--projects-tech-bg-dark);
+    --projects-code-link-bg: var(--projects-code-link-bg-dark);
+
+    background: var(--projects-bg);
+    color: var(--projects-text);
+    padding: 2rem 0;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s;
+}
+
+.projects-section.light {
+    --projects-bg: var(--projects-bg-light);
+    --projects-card-bg: var(--projects-card-bg-light);
+    --projects-content-bg: var(--projects-content-bg-light);
+    --projects-overlay-bg: var(--projects-overlay-light);
+    --projects-text: var(--projects-text-light);
+    --projects-secondary: var(--projects-secondary-light);
+    --projects-tech-bg: var(--projects-tech-bg-light);
+    --projects-code-link-bg: var(--projects-code-link-bg-light);
+}
+
+/* Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    position: relative;
+    perspective: 1000px;
+}
+
+/* Project Card */
+.project-card {
+    position: relative;
+    background: var(--projects-card-bg);
+    border-radius: 24px;
+    padding: 2px;
+    color: var(--projects-text);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--project-index) * 0.2s);
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.09);
+    transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(45deg, transparent, var(--accent-color), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Project Image */
+.project-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 22px 22px 0 0;
+    overflow: hidden;
+    background: #121212;
+}
+
+.projects-section.light .project-image-wrapper {
+    background: #f5f6fa;
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.project-card:hover .project-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Project Overlay */
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--projects-overlay-bg);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+/* Tech Stack */
+.project-tech-stack {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tech-icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--projects-tech-bg);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.tech-icon img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.tech-icon:hover {
+    transform: translateY(-5px);
+    background: var(--accent-color);
+}
+
+.tech-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: #0a0a0a;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 3;
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--accent-color);
+}
+
+.tech-icon:hover .tech-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Project Content */
+.project-content {
+    padding: 2rem;
+    height: unset;
+    background: var(--projects-content-bg);
+    color: var(--projects-text);
+    border-radius: 0 0 22px 22px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Project Title & Description */
+.project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    color: var(--projects-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Project Links */
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.live-link {
+    background: var(--accent-color);
+    color: #0a0a0a;
+}
+
+.code-link {
+    background: var(--projects-code-link-bg);
+    color: var(--accent-color);
+}
+
+.project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--accent-color);
+}
+
+.project-link svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s;
+}
+
+.project-link:hover svg {
+    transform: translateX(3px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects */
+.project-card {
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .projects-grid {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        padding: 0 1rem;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+
+    .project-link {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-grid {
+        gap: 1.2rem;
+        padding: 0 0.5rem;
+    }
+
+    .project-content {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.1rem;
+    }
+
+    .project-link {
+        margin: 1rem 0;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Performance Optimizations */
+.project-card,
+.project-image-wrapper img {
+    will-change: transform;
+}
+
+/* Loading State */
+.project-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 1.5s infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

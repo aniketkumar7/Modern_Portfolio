@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Marquee from "../Loader/Marquee";
-import './skills.css'
+import './Skills.css'
 
 const SKILLS_DATA = [
     { name: 'C', category: 'Programming' },

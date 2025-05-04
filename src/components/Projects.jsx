@@ -25,7 +25,7 @@ import task from "../assets/task.png";
 const projectsData = [
     {
         id: 1,
-        title: "Food Recipe App",
+        title: "FOOD RECIPE APP",
         image: food,
         description:
             "A community-driven recipe sharing app built with React and MongoDB. Features include user authentication, responsive UI, and secure recipe management.",
@@ -39,7 +39,7 @@ const projectsData = [
     },
     {
         id: 2,
-        title: "TaskFlow",
+        title: "TASK FLOW",
         image: task,
         description:
             "A responsive task management app built with vanilla HTML, CSS, and JavaScript. Includes task creation, editing, filtering, and persistence via local storage.",
@@ -67,7 +67,7 @@ const projectsData = [
     },
     {
         id: 2,
-        title: "Disease Prediction App",
+        title: "DISEASE PREDICTION APP",
         image: disease,
         description:
             "This web application employs Streamlit and Python to predict diseases based on symptoms entered by users, utilizing machine learning techniques.",
@@ -93,7 +93,7 @@ const projectsData = [
     },
     {
         id: 4,
-        title: "Weather App",
+        title: "WEATHER APP",
         image: weather,
         description:
             "Built with HTML, CSS, and JavaScript, this app utilizes a weather API to deliver accurate forecasts based on user locations.",
@@ -107,7 +107,7 @@ const projectsData = [
     },
     {
         id: 5,
-        title: "Sign In & Sign Up UI",
+        title: "SIGN IN & SIGN UP UI",
         image: signIcon,
         description:
             "User-friendly sign-in and sign-up page UI designed using Figma, focusing on clean and modern layout.",

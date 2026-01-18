@@ -21,8 +21,8 @@ function AnimatedCursor() {
             ref={cursorRef}
             style={{
                 position: "fixed",
-                top: position.y,
-                left: position.x,
+                top: 0,
+                left: 0,
                 width: "35px",
                 height: "35px",
                 zIndex: 9999,
@@ -31,8 +31,8 @@ function AnimatedCursor() {
                 mixBlendMode: "difference",
                 border: "2px solid white",
                 pointerEvents: "none",
-                transformOrigin: "center",
-                transition: "transform 0.2s ease",
+                transform: `translate(${position.x - 17.5}px, ${position.y - 17.5}px)`,
+                transition: "transform 0.1s ease-out",
             }}
         />
     );

@@ -1,26 +1,96 @@
-* {
+/* ═══════════════════════════════════════════════════════════════════════════
+   GLOBAL RESET
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.app {
-    width: 100%;
-    min-height: 100vh;
-    background-color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
 }
 
-@media screen and (max-width: 768px) {
-    .app {
-        padding: 0 20px;
-    }
+/* Hard stop for any stray horizontal overflow (transforms/positioning) */
+html,
+body {
+    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+}
 
-    .cursor{
+/* Avoid horizontal pan/drag on mobile (keeps vertical scroll working) */
+body {
+    touch-action: pan-y;
+}
+
+#root {
+    width: 100%;
+    overflow-x: clip;
+}
+
+html::-webkit-scrollbar {
+    width: 6px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.3);
+    border-radius: 3px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 150, 150, 0.5);
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   APP WRAPPER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.App {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Section wrappers - prevent overflow and gaps */
+.App > div {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    /* Prevent sub-pixel gaps between sections */
+    margin-top: -1px;
+    padding-top: 1px;
+}
+
+.App > div:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 768px) {
+    .cursor {
         display: none;
     }
-
 }

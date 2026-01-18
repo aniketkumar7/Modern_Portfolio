@@ -4,31 +4,23 @@ import "./Marquee.css";
 
 const Marquee = ({ items, textColor }) => {
     const { theme } = useTheme();
-    // Memoize duplicated items to prevent unnecessary re-renders
-    const duplicatedItems = useMemo(() => [...items, ...items, ...items], [items]);
+    const words = useMemo(() => [...items, ...items, ...items, ...items], [items]);
 
     return (
-        <div
-            className={`marquee ${theme}`}
-            style={{ "--marquee-color": textColor }}
-        >
-            <div className="marquee-content">
-                {duplicatedItems.map((item, index) => (
-                    <div
-                        className="marquee-item"
-                        key={`${item}-${index}`}
-                        style={{
-                            "--item-index": index,
-                            "--total-items": duplicatedItems.length
-                        }}
-                    >
-                        {item}
-                    </div>
-                ))}
+        <div className={`mq ${theme}`} style={{ "--mq-accent": textColor }}>
+            <div className="mq-container">
+                <div className="mq-track">
+                    {words.map((word, i) => (
+                        <div className="mq-segment" key={i}>
+                            <span className="mq-num">{String(i % items.length + 1).padStart(2, '0')}</span>
+                            <span className="mq-txt">{word}</span>
+                            <span className="mq-slash">/</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
-
 
 export default Marquee;

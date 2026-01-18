@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { getRandomColor } from "./utils/color";
 import './styles/theme-variables.css';
 import { ThemeProvider } from "./context/ThemeContext";
+import Preloader from "./Loader/Preloader";
 
 // Lazy load components
 const About = lazy(() => import("./components/About"));
@@ -11,7 +12,6 @@ const Menu = lazy(() => import("./components/Menu"));
 const Skills = lazy(() => import("./components/Skills"));
 const Projects = lazy(() => import("./components/Projects"));
 const Contact = lazy(() => import("./components/Contact"));
-const Preloader = lazy(() => import("./Loader/Preloader"));
 const Achievements = lazy(() => import("./components/Achievements"));
 const Experience = lazy(() => import("./components/Experience"));
 const Education = lazy(() => import("./components/Education"));
@@ -34,19 +34,21 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <Suspense fallback={<Preloader />}>
+      {/* Preloader - always renders and handles its own visibility */}
+      <Preloader />
+      
+      <Suspense fallback={null}>
         <div className="App">
-          <Preloader />
           <Menu
             sectionRefs={[
               homeRef,
               skillsRef,
               aboutRef,
-              projectsRef,
-              contactRef,
-              achievementsRef,
               experienceRef,
               educationRef,
+              projectsRef,
+              achievementsRef,
+              contactRef,
             ]}
             textColor={textColor}
           />

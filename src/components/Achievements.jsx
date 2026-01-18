@@ -1,127 +1,114 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import Marquee from "../Loader/Marquee";
 import { useTheme } from "../context/ThemeContext";
 import "./Achievements.css";
 
 const Achievements = forwardRef(({ textColor }, ref) => {
     const { theme } = useTheme();
+    const [activeCard, setActiveCard] = useState(null);
+
     const achievements = [
         {
+            id: 1,
             title: "AWS Certified Developer",
             issuer: "Amazon Web Services",
-            date: "2024",
-            icon: "🏆",
+            year: "2024",
             link: "https://drive.google.com/file/d/1UtmbBetAwZdfD9ssWpBncvWjAmSrBWMC/view?usp=sharing",
             description: "Advanced cloud computing and AWS services expertise",
-            category: "Cloud Computing"
+            category: "Cloud",
+            color: "#FF9500",
         },
         {
+            id: 2,
             title: "C++ Programming",
             issuer: "Coursera",
-            date: "2023",
-            icon: "🎯",
+            year: "2023",
             link: "https://coursera.org/share/fc6f972841e5856714ecd47ea16f40e0",
             description: "Data structures and algorithmic problem-solving",
-            category: "Programming"
+            category: "Programming",
+            color: "#00C9FF",
         },
         {
+            id: 3,
             title: "UI/UX Design",
             issuer: "Google",
-            date: "2023",
-            icon: "🎨",
+            year: "2023",
             link: "https://coursera.org/share/6a3a99086b4f52822754eb6a6061d787",
             description: "User interface and experience design principles",
-            category: "Design"
-        }
+            category: "Design",
+            color: "#FF3B7F",
+        },
     ];
 
     return (
-        <section className={`achievements-section ${theme}`} ref={ref}>
-            <div className="achievements-background">
-                <div className="gradient-sphere"></div>
-                <div className="gradient-sphere-2"></div>
-                <div className="noise-overlay"></div>
-            </div>
-
+        <section
+            className={`ach ${theme}`}
+            ref={ref}
+            style={{ "--accent": textColor }}
+        >
             <Marquee
-                items={Array(5).fill("Achievements & Certifications")}
+                items={Array(5).fill("Achievements")}
                 textColor={textColor}
+                theme={theme}
             />
 
-            <div className="achievements-container">
-                <div className="achievements-header">
-                    <span className="section-subtitle" style={{ "--accent-color": textColor }}>
-                        PROFESSIONAL MILESTONES
-                    </span>
-                    {/* <h2 className="section-title">
-                        Achievements & <span className="text-gradient">Certifications</span>
-                    </h2> */}
-                    <p className="section-description">
-                        A collection of professional certifications and achievements that
-                        demonstrate my commitment to continuous learning and excellence
+            <div className="ach-container">
+                {/* Header */}
+                <header className="ach-header">
+                    <span className="ach-eyebrow">Certifications</span>
+                    <h2 className="ach-heading">Awards & Credentials</h2>
+                    <p className="ach-subtext">
+                        Professional certifications that validate my expertise.
                     </p>
-                </div>
+                </header>
 
-                <div className="achievements-grid">
-                    {achievements.map((achievement, index) => (
-                        <div
-                            key={index}
-                            className="achievement-card"
-                            style={{
-                                "--card-index": index,
-                                "--accent-color": textColor
+                {/* Achievement Cards */}
+                <div className="ach-showcase">
+                    {achievements.map((item, index) => (
+                        <article
+                            key={item.id}
+                            className={`ach-card ${activeCard === item.id ? 'active' : ''}`}
+                            style={{ 
+                                '--i': index, 
+                                '--card-color': item.color 
                             }}
+                            onMouseEnter={() => setActiveCard(item.id)}
+                            onMouseLeave={() => setActiveCard(null)}
                         >
-                            <div className="achievement-content">
-                                <div className="achievement-top">
-                                    <div className="achievement-icon-wrapper">
-                                        <span className="achievement-icon">{achievement.icon}</span>
-                                        <div className="icon-backdrop"></div>
-                                    </div>
-                                    <div className="achievement-category">
-                                        <span>{achievement.category}</span>
-                                    </div>
+                            {/* Ribbon */}
+                            <div className="ach-ribbon">
+                                <span>{item.category}</span>
+                            </div>
+
+                            {/* Main Content */}
+                            <div className="ach-card-inner">
+                                {/* Info */}
+                                <div className="ach-info">
+                                    <span className="ach-year">{item.year}</span>
+                                    <h3 className="ach-title">{item.title}</h3>
+                                    <p className="ach-issuer">{item.issuer}</p>
                                 </div>
 
-                                <div className="achievement-details">
-                                    <h3 className="achievement-title">{achievement.title}</h3>
-                                    <div className="achievement-meta">
-                                        <span className="achievement-issuer">{achievement.issuer}</span>
-                                        <span className="achievement-date">{achievement.date}</span>
-                                    </div>
-                                    <p className="achievement-description">{achievement.description}</p>
-                                </div>
-
-                                <div className="achievement-footer">
+                                {/* Reveal on hover */}
+                                <div className="ach-reveal">
+                                    <p className="ach-desc">{item.description}</p>
                                     <a
-                                        href={achievement.link}
+                                        href={item.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="credential-link"
+                                        className="ach-link"
                                     >
-                                        <span>View Credential</span>
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            className="link-arrow"
-                                            fill="none"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M7 17L17 7M17 7H7M17 7V17"
-                                            />
+                                        <span>View Certificate</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17" />
                                         </svg>
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="card-backdrop">
-                                <div className="backdrop-blur"></div>
-                                <div className="backdrop-gradient"></div>
-                            </div>
-                        </div>
+                            {/* Decorative Number */}
+                            <span className="ach-num">{String(index + 1).padStart(2, '0')}</span>
+                        </article>
                     ))}
                 </div>
             </div>

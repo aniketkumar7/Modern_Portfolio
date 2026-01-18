@@ -8,90 +8,77 @@ const Education = forwardRef(({ textColor }, ref) => {
 
     const educations = [
         {
-            degree: "Bachelor of Technology",
+            degree: "B.Tech",
+            fullDegree: "Bachelor of Technology",
             field: "Computer Science & Engineering",
             school: "MIET, Meerut",
             period: "2021 - 2025",
             grade: "8.0 CGPA",
-            highlights: [
-                "Published research paper on ML",
-                "Led 3 major projects",
-            ],
         },
         {
-            degree: "Higher Secondary",
+            degree: "XII",
+            fullDegree: "Higher Secondary",
             field: "Science & Mathematics",
             school: "Moon Light Public School",
             period: "2020 - 2021",
             grade: "86.8%",
-            highlights: [
-                "School topper",
-                "Academic excellence award",
-            ],
         },
         {
-            degree: "Secondary School",
+            degree: "X",
+            fullDegree: "Secondary School",
             field: "Science & Mathematics",
             school: "Sunrise Public School",
             period: "2018 - 2019",
             grade: "90%",
-            highlights: [
-                "Academic excellence award",
-                "Top 5 in class",
-            ],
         },
     ];
 
     return (
         <section
-            className={`education-section ${theme}`}
+            className={`edu ${theme}`}
             ref={ref}
-            style={{ "--accent-color": textColor }}
+            style={{ "--accent": textColor }}
         >
-            <div className="education-background">
-                <div className="education-gridOverlay"></div>
-                <div className="education-glow"></div>
-            </div>
-
             <Marquee
-                items={Array(5).fill("Academic Journey")}
+                items={Array(5).fill("Education")}
                 textColor={textColor}
                 theme={theme}
             />
 
-            <div className="education-container">
-                {/* <div className="education-header">
-                    <h2 className="education-title">Academic Excellence</h2>
-                    <p className="education-subtitle">Academic Excellence</p>
-                </div> */}
+            <div className="edu-wrapper">
+                {/* Header */}
+                <header className="edu-header">
+                    <span className="edu-label">Academic Journey</span>
+                    <h2 className="edu-title">Education</h2>
+                </header>
 
-                <div className="education-grid">
+                {/* Cards Row */}
+                <div className="edu-row">
                     {educations.map((edu, idx) => (
-                        <div className="education-card" key={idx}>
-                            <div className="education-card-content">
-                                <div className="education-card-header">
-                                    <div className="education-period-badge">
-                                        {edu.period}
-                                    </div>
-                                    <div className="education-grade-badge">
-                                        {edu.grade}
-                                    </div>
-                                </div>
-
-                                <h3 className="education-degree">{edu.degree}</h3>
-                                <p className="education-field">{edu.field}</p>
-                                <p className="education-school">{edu.school}</p>
-
-                                <div className="education-highlights">
-                                    {edu.highlights.map((highlight, i) => (
-                                        <div className="education-highlight-item" key={i}>
-                                            <span className="highlight-dot"></span>
-                                            {highlight}
-                                        </div>
-                                    ))}
-                                </div>
+                        <article 
+                            className="edu-card" 
+                            key={idx}
+                            style={{ '--i': idx }}
+                        >
+                            {/* Header Row */}
+                            <div className="edu-card-header">
+                                <span className="edu-card-num">
+                                    {String(idx + 1).padStart(2, '0')}
+                                </span>
+                                <span className="edu-card-grade">{edu.grade}</span>
                             </div>
-                        </div>
+
+                            {/* Content */}
+                            <div className="edu-card-content">
+                                <span className="edu-card-period">{edu.period}</span>
+                                <h3 className="edu-card-degree">{edu.fullDegree}</h3>
+                                <p className="edu-card-field">{edu.field}</p>
+                                <p className="edu-card-school">{edu.school}</p>
+                            </div>
+
+                            {/* Bottom Line */}
+                            <div className="edu-card-line" />
+                        </article>
                     ))}
                 </div>
             </div>

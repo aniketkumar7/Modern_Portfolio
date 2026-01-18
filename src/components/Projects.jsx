@@ -1,48 +1,85 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 import Marquee from "../Loader/Marquee";
 import { useTheme } from "../context/ThemeContext";
 import "./Projects.css";
 
-// Import images (assuming dynamic import or static imports as needed)
+// Import images
 import movie from "../assets/movie.png";
-import disease from "../assets/disease.png";
 import weather from "../assets/weather.png";
 import obys from "../assets/obys.png";
-import reactIcon from "../assets/react.png";
-import reduxIcon from "../assets/redux.png";
-import firebaseIcon from "../assets/firebase.png";
-import jsIcon from "../assets/js.png";
-import htmlIcon from "../assets/html.png";
-import cssIcon from "../assets/css.png";
+import reactIcon from "../assets/javascript-react.svg";
+import firebaseIcon from "../assets/firebase-icon.svg";
+import jsIcon from "../assets/javascript.svg";
+import htmlIcon from "../assets/html5.svg";
+import cssIcon from "../assets/css3.svg";
 import signIcon from "../assets/sign.png";
-import figmaIcon from "../assets/figma.png";
+import figmaIcon from "../assets/figma-light.svg";
 import nikeIcon from "../assets/nike.png";
-import tailwindIcon from "../assets/tailwind.png";
-import mongoIcon from "../assets/mongodb.png";
+import tailwindIcon from "../assets/tailwindcss.svg";
+import mongoIcon from "../assets/mongodb.svg";
 import food from "../assets/food.png";
 import task from "../assets/task.png";
+import linkVaultBanner from "../assets/linkvault.png";
+import cocBanner from "../assets/coc.png";
+import supabaseIcon from "../assets/supabase-dark.svg";
+import nodeIcon from "../assets/nodejs-icon.svg";
 
-const projectsData = [
+const webProjects = [
     {
         id: 1,
-        title: "FOOD RECIPE APP",
+        title: "Food Recipe App",
+        category: "Full Stack",
         image: food,
-        description:
-            "A community-driven recipe sharing app built with React and MongoDB. Features include user authentication, responsive UI, and secure recipe management.",
+        description: "Community-driven recipe sharing platform with user authentication and secure recipe management.",
         liveLink: "https://food-app-29au.onrender.com/",
         codeLink: "https://github.com/aniketkumar7/FOOD_BLOG_APP",
         technologies: [
             { name: "React", icon: reactIcon },
-            { name: "Tailwind CSS", icon: tailwindIcon },
+            { name: "Tailwind", icon: tailwindIcon },
             { name: "MongoDB", icon: mongoIcon },
+            { name: "JavaScript", icon: jsIcon },
+            { name: "Node.js", icon: nodeIcon },
         ],
+        year: "2025",
     },
     {
         id: 2,
-        title: "TASK FLOW",
+        title: "LinkVault",
+        category: "Full Stack",
+        image: linkVaultBanner,
+        description: "Personal link vault to save, organize, and never lose useful URLs (collections, tags, favorites, search).",
+        liveLink: "https://link-vault-beta.vercel.app/",
+        codeLink: "https://github.com/aniketkumar7/LinkVault",
+        technologies: [
+            { name: "React", icon: reactIcon },
+            { name: "Tailwind", icon: tailwindIcon },
+            { name: "Supabase", icon: supabaseIcon },
+            { name: "JavaScript", icon: jsIcon },
+            { name: "Node.js", icon: nodeIcon },
+        ],
+        year: "2026",
+    },
+    {
+        id: 3,
+        title: "Netflix GPT",
+        category: "AI Powered",
+        image: movie,
+        description: "GPT-3 powered movie recommendation engine with TMDB API integration.",
+        liveLink: "https://netflix-gpt-jade-five.vercel.app/",
+        codeLink: "https://github.com/aniketkumar7/NETFLIX_GPT",
+        technologies: [
+            { name: "React", icon: reactIcon },
+            { name: "Tailwind", icon: tailwindIcon },
+            { name: "Firebase", icon: firebaseIcon },
+        ],
+        year: "2024",
+    },
+    {
+        id: 4,
+        title: "Task Flow",
+        category: "Productivity",
         image: task,
-        description:
-            "A responsive task management app built with vanilla HTML, CSS, and JavaScript. Includes task creation, editing, filtering, and persistence via local storage.",
+        description: "Elegant task management app with filtering and local storage.",
         liveLink: "https://task-flow-theta-ruddy.vercel.app/",
         codeLink: "https://github.com/aniketkumar7/Task-Flow",
         technologies: [
@@ -50,39 +87,14 @@ const projectsData = [
             { name: "CSS", icon: cssIcon },
             { name: "JavaScript", icon: jsIcon },
         ],
+        year: "2024",
     },
     {
-        id: 1,
-        title: "NETFLIX GPT",
-        image: movie,
-        description:
-            "Netflix GPT is an innovative web application that allows users to browse movies recommended by a GPT-3 model based on their preferences and ratings. Developed using React, Firebase, and Redux with TMDB API integration.",
-        liveLink: "https://netflix-gpt-jade-five.vercel.app/",
-        codeLink: "https://github.com/aniketkumar7/NETFLIX_GPT",
-        technologies: [
-            { name: "React", icon: reactIcon },
-            { name: "Redux", icon: reduxIcon },
-            { name: "Firebase", icon: firebaseIcon },
-        ],
-    },
-    {
-        id: 2,
-        title: "DISEASE PREDICTION APP",
-        image: disease,
-        description:
-            "This web application employs Streamlit and Python to predict diseases based on symptoms entered by users, utilizing machine learning techniques.",
-        liveLink:
-            "https://multiplediseaseprediction-2yendaquygiktzxcxtfmhc.streamlit.app/",
-        codeLink:
-            "https://github.com/aniketkumar7/Multiple_Disease_Prediction/tree/main",
-        technologies: [{ name: "Javascript", icon: jsIcon }],
-    },
-    {
-        id: 3,
-        title: "OBYS UI",
+        id: 5,
+        title: "OBYS Clone",
+        category: "UI/UX",
         image: obys,
-        description:
-            "The OBYS UI project is a design-only clone created with HTML, CSS, and JavaScript, emphasizing aesthetic appeal and user experience.",
+        description: "Pixel-perfect design clone with smooth animations.",
         liveLink: "https://obys-clone.vercel.app/",
         codeLink: "https://github.com/aniketkumar7/OBYS-Clone",
         technologies: [
@@ -90,13 +102,14 @@ const projectsData = [
             { name: "CSS", icon: cssIcon },
             { name: "JavaScript", icon: jsIcon },
         ],
+        year: "2023",
     },
     {
-        id: 4,
-        title: "WEATHER APP",
+        id: 6,
+        title: "Weather App",
+        category: "API",
         image: weather,
-        description:
-            "Built with HTML, CSS, and JavaScript, this app utilizes a weather API to deliver accurate forecasts based on user locations.",
+        description: "Real-time weather forecasts with location-based data.",
         liveLink: "https://weather-app-orpin-chi-53.vercel.app/",
         codeLink: "https://github.com/aniketkumar7/Weather_App",
         technologies: [
@@ -104,112 +117,300 @@ const projectsData = [
             { name: "CSS", icon: cssIcon },
             { name: "JavaScript", icon: jsIcon },
         ],
+        year: "2023",
     },
+];
+
+const figmaDesigns = [
     {
-        id: 5,
-        title: "SIGN IN & SIGN UP UI",
+        id: 7,
+        title: "Auth UI Design",
+        category: "UI Design",
         image: signIcon,
-        description:
-            "User-friendly sign-in and sign-up page UI designed using Figma, focusing on clean and modern layout.",
-        liveLink:
-            "https://www.figma.com/proto/GpmHQsK3nTkFwaKi9IQM1T/sign-up-page?node-id=0-1&t=MyzaTiocBIwSw1ed-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2",
+        description: "Modern authentication page designs with clean aesthetics.",
+        liveLink: "https://www.figma.com/proto/GpmHQsK3nTkFwaKi9IQM1T/sign-up-page",
         technologies: [{ name: "Figma", icon: figmaIcon }],
+        year: "2023",
     },
     {
-        id: 6,
-        title: "NIKE SHOE UI",
+        id: 8,
+        title: "Nike Shoe UI",
+        category: "Product Design",
         image: nikeIcon,
-        description:
-            "Aesthetic Nike Shoe Page UI created in Figma, highlighting product images and pricing.",
-        liveLink:
-            "https://www.figma.com/proto/MC3mX6GDgWdyq1NO635pTu/NIKE-SHOES-UI?node-id=2-6&t=jztDYjS22BJcYrsW-0&scaling=contain&content-scaling=fixed&page-id=0%3A1",
+        description: "Premium product showcase design with dynamic layout.",
+        liveLink: "https://www.figma.com/proto/MC3mX6GDgWdyq1NO635pTu/NIKE-SHOES-UI",
         technologies: [{ name: "Figma", icon: figmaIcon }],
+        year: "2023",
+    },
+    {
+        id: 9,
+        title: "COC Landing Page",
+        category: "Landing Page",
+        image: cocBanner,
+        description: "Landing page concept design (Figma).",
+        // TODO: paste your Figma prototype/file link here
+        liveLink: "",
+        technologies: [{ name: "Figma", icon: figmaIcon }],
+        year: "2026",
     },
 ];
 
 const Projects = forwardRef(({ textColor }, ref) => {
-    const {theme} = useTheme();
+    const { theme } = useTheme();
+    const [activeTab, setActiveTab] = useState("web");
+    const [activeId, setActiveId] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
 
-    const items = Array(5).fill("Projects");
+    const currentProjects = useMemo(
+        () => (activeTab === "web" ? webProjects : figmaDesigns),
+        [activeTab]
+    );
+
+    useEffect(() => {
+        setActiveId(currentProjects[0]?.id ?? null);
+    }, [currentProjects]);
+
+    useEffect(() => {
+        const mql = window.matchMedia("(max-width: 900px)");
+        const onChange = (e) => setIsMobile(e.matches);
+        setIsMobile(mql.matches);
+        mql.addEventListener("change", onChange);
+        return () => mql.removeEventListener("change", onChange);
+    }, []);
+
+    const activeProject = useMemo(() => {
+        return currentProjects.find((p) => p.id === activeId) ?? currentProjects[0];
+    }, [activeId, currentProjects]);
+
+    const activeIndex = useMemo(() => {
+        const idx = currentProjects.findIndex((p) => p.id === activeId);
+        return idx >= 0 ? idx : 0;
+    }, [activeId, currentProjects]);
+
+    const ActionButton = ({ kind, href }) => {
+        const label = kind === "view" ? "View" : "GitHub";
+        const className = kind === "view" ? "proj-act proj-act-primary" : "proj-act proj-act-ghost";
+
+        if (!href) {
+            return (
+                <button type="button" className={`${className} is-disabled`} disabled>
+                    {label}
+                    {kind === "view" ? (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                    ) : (
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                    )}
+                </button>
+            );
+        }
+
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+                {label}
+                {kind === "view" ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                ) : (
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                )}
+            </a>
+        );
+    };
 
     return (
-        <div
-            className={`projects-section ${theme}`}
+        <section
+            className={`proj ${theme}`}
             ref={ref}
-            style={{ "--accent-color": textColor }}
+            style={{ "--accent": textColor }}
         >
-            <Marquee items={items} textColor={textColor} theme={theme} />
+            <Marquee 
+                items={Array(5).fill("Projects")} 
+                textColor={textColor} 
+                theme={theme} 
+            />
 
-            <div className="projects-grid">
-                {projectsData.map((project, index) => (
-                    <div
-                        className="project-card"
-                        key={project.id}
-                        style={{ "--project-index": index }}
+            <div className="proj-container">
+                {/* Header */}
+                <header className="proj-header">
+                    <span className="proj-eyebrow">Portfolio</span>
+                    <h2 className="proj-heading">Selected Works</h2>
+                    <p className="proj-subtext">
+                        A showcase of my recent projects in web development and design.
+                    </p>
+                </header>
+
+                {/* Tab Switcher */}
+                <div className="proj-tabs">
+                    <button 
+                        className={`proj-tab ${activeTab === 'web' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('web')}
                     >
-                        <div className="project-image-wrapper">
-                            <img src={project.image} alt={project.title} loading="lazy" />
-                            <div className="project-overlay"></div>
+                        <span className="proj-tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18M9 21V9" />
+                            </svg>
+                        </span>
+                        <span className="proj-tab-text">Web Projects</span>
+                        <span className="proj-tab-count">{webProjects.length}</span>
+                    </button>
+                    <button 
+                        className={`proj-tab ${activeTab === 'figma' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('figma')}
+                    >
+                        <span className="proj-tab-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M5 5.5A3.5 3.5 0 018.5 2H12v7H8.5A3.5 3.5 0 015 5.5zM12 2h3.5a3.5 3.5 0 110 7H12V2zM12 12.5a3.5 3.5 0 117 0 3.5 3.5 0 11-7 0zM5 19.5A3.5 3.5 0 018.5 16H12v3.5a3.5 3.5 0 11-7 0zM5 12.5A3.5 3.5 0 018.5 9H12v7H8.5A3.5 3.5 0 015 12.5z"/>
+                            </svg>
+                        </span>
+                        <span className="proj-tab-text">Figma Designs</span>
+                        <span className="proj-tab-count">{figmaDesigns.length}</span>
+                    </button>
+                </div>
+
+                {/* Unique split layout (list + preview) */}
+                {isMobile ? (
+                    <>
+                        <div className="proj-carousel-hint" aria-hidden="true">
+                            <span className="proj-carousel-hint-text">Swipe →</span>
                         </div>
-
-                        <div className="project-content">
-                            <h3 className="project-title">{project.title}</h3>
-                            <p className="project-description">{project.description}</p>
-
-                            <div className="project-tech-stack">
-                                {project.technologies.map((tech, idx) => (
-                                    <div className="tech-icon" key={idx} title={tech.name}>
-                                        <img src={tech.icon} alt={tech.name} />
-                                        <div className="tech-tooltip">{tech.name}</div>
+                        <div className="proj-carousel" aria-label="Projects">
+                        {currentProjects.map((p, i) => (
+                            <article key={p.id} className="proj-mobile-card">
+                                <div className="proj-preview-media">
+                                    <img src={p.image} alt={p.title} loading="lazy" />
+                                    <div className="proj-preview-media-overlay" />
+                                    <div className="proj-preview-top">
+                                        <span className="proj-preview-pill">{p.category}</span>
+                                        <span className="proj-preview-count">
+                                            {String(i + 1).padStart(2, "0")} / {String(currentProjects.length).padStart(2, "0")}
+                                        </span>
                                     </div>
-                                ))}
-                            </div>
+                                    <div className="proj-preview-actions">
+                                        <ActionButton kind="view" href={p.liveLink} />
+                                        <ActionButton kind="code" href={p.codeLink} />
+                                    </div>
+                                </div>
 
-                            <div className="project-links">
-                                <a
-                                    href={project.liveLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="project-link live-link"
-                                >
-                                    Live Demo
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <path d="M5 12h14" />
-                                        <path d="M12 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                                <a
-                                    href={project.codeLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="project-link code-link"
-                                >
-                                    Source Code
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <path d="M5 12h14" />
-                                        <path d="M12 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                            </div>
+                                <div className="proj-preview-body">
+                                    <h3 className="proj-preview-title">{p.title}</h3>
+                                    <p className="proj-preview-desc">{p.description}</p>
+
+                                    <div className="proj-preview-tech">
+                                        {p.technologies.map((t) => (
+                                            <span key={t.name} className="proj-chip">
+                                                {t.icon ? (
+                                                    <img src={t.icon} alt="" aria-hidden="true" />
+                                                ) : (
+                                                    <span className="proj-chip-fallback" aria-hidden="true">
+                                                        {t.name.slice(0, 1).toUpperCase()}
+                                                    </span>
+                                                )}
+                                                <span className="proj-chip-text">{t.name}</span>
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
                         </div>
+                    </>
+                ) : (
+                    <div className="proj-split" key={activeTab}>
+                        <div className="proj-list" role="listbox" aria-label="Projects">
+                            {currentProjects.map((p, i) => {
+                                const isActive = p.id === activeId;
+                                return (
+                                    <button
+                                        key={p.id}
+                                        type="button"
+                                        className={`proj-row ${isActive ? "active" : ""}`}
+                                        onClick={() => setActiveId(p.id)}
+                                        aria-selected={isActive}
+                                    >
+                                        <span className="proj-row-num">{String(i + 1).padStart(2, "0")}</span>
+                                        <span className="proj-row-main">
+                                            <span className="proj-row-title">{p.title}</span>
+                                            <span className="proj-row-sub">
+                                                <span className="proj-row-cat">{p.category}</span>
+                                            </span>
+                                        </span>
+                                        <span className="proj-row-arrow" aria-hidden="true">↗</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {activeProject && (
+                            <div className="proj-preview" aria-live="polite">
+                                <div className="proj-preview-head" aria-hidden="true">
+                                    <span className="proj-preview-head-label">Preview</span>
+                                    <span className="proj-preview-head-tip">Pick a project on the left →</span>
+                                </div>
+                                <div className="proj-preview-card">
+                                    <div className="proj-preview-media">
+                                        <img src={activeProject.image} alt={activeProject.title} loading="lazy" />
+                                        <div className="proj-preview-media-overlay" />
+                                        <div className="proj-preview-top">
+                                            <span className="proj-preview-pill">{activeProject.category}</span>
+                                            <span className="proj-preview-count">
+                                                {String(activeIndex + 1).padStart(2, "0")} / {String(currentProjects.length).padStart(2, "0")}
+                                            </span>
+                                        </div>
+                                        <div className="proj-preview-actions">
+                                            <ActionButton kind="view" href={activeProject.liveLink} />
+                                            <ActionButton kind="code" href={activeProject.codeLink} />
+                                        </div>
+                                    </div>
+
+                                    <div className="proj-preview-body">
+                                        <h3 className="proj-preview-title">{activeProject.title}</h3>
+                                        <p className="proj-preview-desc">{activeProject.description}</p>
+
+                                        <div className="proj-preview-tech">
+                                            {activeProject.technologies.map((t) => (
+                                                <span key={t.name} className="proj-chip">
+                                                    {t.icon ? (
+                                                        <img src={t.icon} alt="" aria-hidden="true" />
+                                                    ) : (
+                                                        <span className="proj-chip-fallback" aria-hidden="true">
+                                                            {t.name.slice(0, 1).toUpperCase()}
+                                                        </span>
+                                                    )}
+                                                    <span className="proj-chip-text">{t.name}</span>
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                ))}
+                )}
+
+                {/* CTA */}
+                <div className="proj-cta-wrap">
+                    <a 
+                        href={activeTab === "web" ? "https://github.com/aniketkumar7" : "https://www.figma.com/@aniketkumar7"} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="proj-cta-btn"
+                    >
+                        <span>{activeTab === "web" ? "View All on GitHub" : "View All on Figma"}</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
     );
 });
 

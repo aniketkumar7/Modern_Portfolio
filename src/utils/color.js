@@ -1,15 +1,15 @@
 // Predefined colors for random selection with reduced brightness
 const ACCENT_COLORS = [
-    '#4cd9b7', // Darker Mint
-    '#0095ab', // Darker Cyan
-    '#5849c5', // Darker Purple
-    '#8ac7b0', // Darker Soft Green
-    '#e6b598', // Darker Peach
-    '#e57177', // Darker Coral
-    '#7589e6', // Darker Lavender
-    '#00aba6', // Darker Turquoise
-    '#e08e7d', // Darker Salmon
-    '#66c7c7', // Darker Light Blue
+    '#1d6252', // Darker Mint
+    '#026472', // Darker Cyan
+    '#322a6f', // Darker Purple
+    '#3f6859', // Darker Soft Green
+    '#75523e', // Darker Peach
+    '#723c3f', // Darker Coral
+    '#374068', // Darker Lavender
+    '#03605d', // Darker Turquoise
+    '#804e44', // Darker Salmon
+    '#2f6161', // Darker Light Blue
 ];
 
 // Memoized random color function

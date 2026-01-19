@@ -30,14 +30,14 @@ const Home = forwardRef(({ textColor }, ref) => {
         >
             {/* Noise Overlay */}
             <div className="hero-noise" />
-            
+
             {/* Gradient Orbs */}
-            <motion.div 
+            <motion.div
                 className="hero-orb hero-orb-1"
                 animate={{ x: mousePos.x * 2, y: mousePos.y * 2 }}
                 transition={{ type: "spring", stiffness: 50 }}
             />
-            <motion.div 
+            <motion.div
                 className="hero-orb hero-orb-2"
                 animate={{ x: mousePos.x * -1.5, y: mousePos.y * -1.5 }}
                 transition={{ type: "spring", stiffness: 50 }}
@@ -50,7 +50,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                     <span>2026</span>
                 </div>
                 <div className="corner corner-tr">
-                    <motion.span 
+                    <motion.span
                         className="status-dot"
                         animate={{ scale: [1, 1.3, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -59,14 +59,14 @@ const Home = forwardRef(({ textColor }, ref) => {
                 </div>
                 <div className="corner corner-bl">
                     <span>Scroll</span>
-                    <motion.span 
+                    <motion.span
                         animate={{ y: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                     >↓</motion.span>
                 </div>
-                <div className="corner corner-br">
+                {/* <div className="corner corner-br">
                     <span>001</span>
-                </div>
+                </div> */}
 
                 {/* Main Content */}
                 <div className="hero-center">
@@ -79,7 +79,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                                     className="name-char"
                                     initial={{ y: 200, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
-                                    transition={{ 
+                                    transition={{
                                         duration: 1,
                                         delay: i * 0.08,
                                         ease: [0.16, 1, 0.3, 1]
@@ -96,7 +96,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                                     className="name-char"
                                     initial={{ y: 200, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
-                                    transition={{ 
+                                    transition={{
                                         duration: 1,
                                         delay: 0.3 + i * 0.08,
                                         ease: [0.16, 1, 0.3, 1]
@@ -109,7 +109,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                     </div>
 
                     {/* Floating Roles */}
-                    <motion.div 
+                    <motion.div
                         className="hero-roles"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -121,7 +121,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                     </motion.div>
 
                     {/* Tagline */}
-                    <motion.p 
+                    <motion.p
                         className="hero-tagline"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -131,23 +131,13 @@ const Home = forwardRef(({ textColor }, ref) => {
                     </motion.p>
 
                     {/* CTAs */}
-                    <motion.div 
+                    <motion.div
                         className="hero-actions"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.6 }}
                     >
-                        <a 
-                            href="/Aniket_Kumar_Resume.pdf" 
-                            download
-                            className="hero-btn hero-btn-primary"
-                        >
-                            <span>Download CV</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                            </svg>
-                        </a>
-                        <a 
+                        <a
                             href="mailto:aniketkumar639597@gmail.com"
                             className="hero-btn hero-btn-secondary"
                         >
@@ -160,7 +150,7 @@ const Home = forwardRef(({ textColor }, ref) => {
                 </div>
 
                 {/* Social Strip */}
-                <motion.div 
+                <motion.div
                     className="hero-social-strip"
                     initial={{ x: 100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}

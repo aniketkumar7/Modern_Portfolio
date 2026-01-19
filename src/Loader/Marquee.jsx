@@ -12,7 +12,6 @@ const Marquee = ({ items, textColor }) => {
                 <div className="mq-track">
                     {words.map((word, i) => (
                         <div className="mq-segment" key={i}>
-                            <span className="mq-num">{String(i % items.length + 1).padStart(2, '0')}</span>
                             <span className="mq-txt">{word}</span>
                             <span className="mq-slash">/</span>
                         </div>

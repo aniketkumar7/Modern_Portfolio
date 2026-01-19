@@ -4,7 +4,7 @@
 
 .mq {
     --mq-accent: #fff;
-    
+
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -17,8 +17,10 @@
 
 .mq-container {
     position: relative;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     overflow: hidden;
+    border-top: 2px solid var(--mq-accent);
+    border-bottom: 2px solid var(--mq-accent);
 }
 
 /* Top line - removed */
@@ -90,21 +92,21 @@
     .mq-container {
         padding: 1.5rem 0;
     }
-    
+
     .mq-segment {
         gap: 0.75rem;
         padding: 0 1.5rem;
     }
-    
+
     .mq-num {
         font-size: 0.55rem;
     }
-    
+
     .mq-txt {
         font-size: 1rem;
         letter-spacing: 0.08em;
     }
-    
+
     .mq-slash {
         margin-left: 0.5rem;
     }

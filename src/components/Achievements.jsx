@@ -68,9 +68,9 @@ const Achievements = forwardRef(({ textColor }, ref) => {
                         <article
                             key={item.id}
                             className={`ach-card ${activeCard === item.id ? 'active' : ''}`}
-                            style={{ 
-                                '--i': index, 
-                                '--card-color': item.color 
+                            style={{
+                                '--i': index,
+                                '--card-color': item.color
                             }}
                             onMouseEnter={() => setActiveCard(item.id)}
                             onMouseLeave={() => setActiveCard(null)}

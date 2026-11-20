@@ -8,15 +8,24 @@ import taskflow from "./assets/shot-taskflow.webp";
 
 export const GITHUB_USER = "aniketkumar7";
 
+// Whole months from a start month (1-12) to now, inclusive
+const monthsSince = (year, month) => {
+    const d = new Date();
+    return (d.getFullYear() - year) * 12 + (d.getMonth() + 1 - month) + 1;
+};
+
 export const profile = {
     name: "Aniket Kumar",
-    role: "Software Developer",
+    role: "Software Engineer",
     company: "CatalyzeX",
     location: "India",
     timeZone: "Asia/Kolkata",
     email: "aniketkumar639597@gmail.com",
+    github: "https://github.com/aniketkumar7",
     // TODO: resume link
     resume: "",
+    // GoatCounter site code (the "xyz" in xyz.goatcounter.com). Empty = visitor count hidden.
+    goatcounter: "",
     intro: "I build web products end to end: frontend platforms, the services behind them, and the small details that make them feel fast.",
 };
 
@@ -27,66 +36,109 @@ export const socials = [
     { label: "Figma", handle: "@aniketkumar7", href: "https://www.figma.com/@aniketkumar7" },
 ];
 
-export const facts = [
-    { label: "based in", value: "India (IST)" },
-    { label: "currently", value: "Software Developer, CatalyzeX" },
-    { label: "studied", value: "B.Tech CSE, MIET Meerut ’25" },
-    { label: "focus", value: "Frontend platforms, search, DX" },
+export const education = { school: "MIET, Meerut", degree: "B.Tech, Computer Science" };
+
+// Small things I care about, shown as one quiet line under About
+export const principles = ["why before how", "fast is a feature", "own it end to end"];
+
+// Career as a left-to-right git graph, oldest → newest.
+// lane: "main" (me), "up" (side branch above), "down" (side branch below).
+// era groups nodes under a label strip so it's clear where each stop happened.
+export const careerSummary = `${monthsSince(2025, 6)} months at CatalyzeX · 4 products · 14 repos · 1,000+ commits`;
+
+export const eras = [
+    { label: "MIET Meerut", sub: "B.Tech CSE", from: 0, to: 2 },
+    { label: "CatalyzeX", sub: "intern → full-time", from: 3, to: 8, current: true },
 ];
 
-export const experience = [
+export const journey = [
     {
-        company: "CatalyzeX",
-        roles: [
-            { title: "Software Developer", period: "Sep 2025 — Present" },
-            { title: "Software Developer Intern", period: "Jun 2025 — Aug 2025" },
-        ],
-        location: "Remote",
-        current: true,
-        tldr: "Primary frontend owner on four products, growing into backend, services and infra.",
-        stats: [
-            { value: "4", label: "products" },
-            { value: "11+", label: "repos" },
-            { value: "~800", label: "commits" },
-        ],
-        highlights: [
-            {
-                lead: "Built the RecordX frontend platform.",
-                body: "Created the monorepo, split a monolithic frontend into four apps (admin, client, console, gateway) on a shared package, and led the move from SSR to CSR to a plain Vite SPA. The whole team's frontend now builds and ships on it.",
-            },
-            {
-                lead: "Shipped Global Search end to end in about three weeks.",
-                body: "A new FastAPI + Qdrant microservice with keyword and hybrid search, kept in sync through NATS events, rolled out behind a feature flag, plus the search UI. Now one of the most used features.",
-            },
-            {
-                lead: "Built the growth layer for JellyFish.",
-                body: "Challenges, friends, leaderboards, streaks, animated badges, referral campaigns with rewards, generated Open Graph share images and an embeddable quiz widget: the social side that drives retention.",
-            },
-            {
-                lead: "Owned the Cases module and Saved Views in Legal-X.",
-                body: "Backend and frontend for case overviews with caching and autofill, plus Filters and Saved Views (the largest feature by volume), DOCX preview, a dark-mode theming system and cross-tab auth sync.",
-            },
-            {
-                lead: "Primary frontend dev on Intake Portal.",
-                body: "Google and Microsoft OAuth, a leads → prospects → clients CRM, bulk import and export, dashboard analytics, notifications and an activity log.",
-            },
-        ],
-        // How the role grew, oldest first
-        timeline: [
-            { period: "Jun — Jul 2025", focus: "Client and admin portals for a law firm" },
-            { period: "Jul 2025 — Feb 2026", focus: "Feature owner on JellyFish and Intake Portal" },
-            { period: "Feb — Jun 2026", focus: "Legal-X frontend plus backend domain work" },
-            { period: "Jun 2026 — now", focus: "Architecture: RecordX platform, Global Search" },
-        ],
-        stack: ["React", "TypeScript", "Vite", "FastAPI", "Qdrant", "NATS"],
+        lane: "main",
+        date: "2021",
+        short: "B.Tech",
+        title: "B.Tech CSE",
+        org: "MIET Meerut",
+        body: "CS fundamentals, DSA in C++, and my first web projects.",
+        tag: "init",
     },
     {
-        company: "Tublian",
-        roles: [{ title: "Open Source Intern", period: "Apr 2024 — May 2024" }],
-        location: "Remote",
-        tldr: "Contributed to 5+ open-source projects and learned to ship in shared, public codebases.",
-        highlights: [],
-        stack: ["Git", "GitHub", "Open source"],
+        lane: "up",
+        date: "Apr 2024",
+        short: "Tublian",
+        title: "Open Source Intern",
+        org: "Tublian",
+        body: "Contributed to 5+ open-source projects.",
+        stack: ["Git", "GitHub"],
+    },
+    {
+        lane: "main",
+        date: "2025",
+        short: "Graduated",
+        title: "Graduated",
+        org: "MIET Meerut",
+        body: "Wrapped up the B.Tech in Computer Science & Engineering.",
+        tag: "v1.0",
+    },
+    {
+        lane: "down",
+        date: "Jun 2025",
+        short: "Intern",
+        title: "Software Engineer Intern",
+        org: "CatalyzeX",
+        body: "Client and admin portals for a law firm: client management, invitations, files and settings.",
+        stack: ["React", "Next.js"],
+    },
+    {
+        lane: "main",
+        date: "Sep 2025",
+        short: "Full-time",
+        title: "Software Engineer",
+        org: "CatalyzeX",
+        body: "Converted to full-time. Primary frontend owner across four products.",
+        tag: "full-time",
+        merge: true,
+    },
+    {
+        lane: "main",
+        date: "2025",
+        short: "Intake",
+        title: "Intake Portal",
+        org: "CatalyzeX",
+        body: "Primary frontend dev: OAuth, a leads → clients CRM, bulk import and analytics.",
+        stack: ["React", "OAuth"],
+    },
+    {
+        lane: "main",
+        date: "2025",
+        short: "JellyFish",
+        title: "JellyFish",
+        org: "CatalyzeX",
+        body: "The growth layer: streaks, leaderboards, badges, referrals and share cards.",
+        stack: ["React", "Animations"],
+    },
+    {
+        lane: "main",
+        date: "Feb 2026",
+        short: "Legal-X",
+        title: "Legal-X",
+        org: "CatalyzeX",
+        body: "Filters and Saved Views, the Cases module, DOCX preview and theming.",
+        stack: ["React", "FastAPI"],
+    },
+    {
+        lane: "main",
+        date: "Jun 2026 — now",
+        short: "RecordX",
+        title: "RecordX platform",
+        org: "CatalyzeX",
+        body: "The frontend the whole team ships on: one monorepo, four apps, SSR → Vite SPA.",
+        points: [
+            "Global Search: FastAPI + Qdrant service, shipped in three weeks",
+            "Neos partner integration: two-way sync of requests, notes and documents",
+            "Chrome extension side panel for partner case pages",
+        ],
+        stack: ["React", "Vite", "FastAPI", "Qdrant"],
+        head: true,
     },
 ];
 
@@ -166,24 +218,35 @@ export const projects = [
         ],
         stack: ["React", "Node.js", "MongoDB", "Tailwind"],
     },
-];
-
-export const earlier = [
-    {
-        name: "Netflix GPT",
-        year: "2024",
-        image: netflix,
-        blurb: "GPT-powered movie suggestions on top of TMDB, with Firebase auth.",
-        live: "https://netflix-gpt-jade-five.vercel.app/",
-        code: "https://github.com/aniketkumar7/NETFLIX_GPT",
-    },
     {
         name: "TaskFlow",
+        type: "Task tracker",
         year: "2026",
         image: taskflow,
-        blurb: "A minimal, local-first task tracker with priorities, due dates and shortcuts.",
         live: "https://task-flow-theta-ruddy.vercel.app/",
         code: "https://github.com/aniketkumar7/Task-Flow",
+        oneLiner: "A minimal, local-first task tracker: no account, no backend, just fast.",
+        points: [
+            "Priorities, due dates and times, notes, and search with filters",
+            "Keyboard-first: / to search, n to add a task",
+            "Everything stays in local storage, with light and dark themes",
+        ],
+        stack: ["HTML", "CSS", "JavaScript"],
+    },
+    {
+        name: "Netflix GPT",
+        type: "AI side project",
+        year: "2024",
+        image: netflix,
+        live: "https://netflix-gpt-jade-five.vercel.app/",
+        code: "https://github.com/aniketkumar7/NETFLIX_GPT",
+        oneLiner: "A Netflix-style movie browser where you describe a mood and GPT suggests what to watch.",
+        points: [
+            "Firebase sign-up and sign-in with a protected browse page",
+            "GPT-powered search that turns a prompt into movie picks",
+            "Movie data and posters from the TMDB API",
+        ],
+        stack: ["React", "Tailwind", "Firebase", "TMDB API"],
     },
 ];
 

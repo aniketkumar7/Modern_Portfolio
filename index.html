@@ -2,11 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/man.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aniket Kumar's Portfolio" />
+    <title>Aniket Kumar · Software Developer</title>
+    <meta name="description" content="Aniket Kumar, software developer at CatalyzeX. Frontend platforms, full-stack products and the tools I build for myself." />
     <meta name="author" content="Aniket Kumar" />
-    <title>Aniket Kumar's Portfolio</title>
+    <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Set theme before paint to avoid a flash
+      try {
+        var t = localStorage.getItem("theme");
+        document.documentElement.dataset.theme = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      } catch (e) {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

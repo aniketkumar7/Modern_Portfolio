@@ -1,19 +1,19 @@
-// src/components/ThemeToggle.jsx
-import { useTheme } from '../context/ThemeContext';
-import './ThemeToggle.css';
+import { useState } from "react";
+import { FiMoon, FiSun } from "react-icons/fi";
 
-const ThemeToggle = () => {
-    const { theme, toggleTheme } = useTheme();
+export default function ThemeToggle() {
+    const [theme, setTheme] = useState(() => document.documentElement.dataset.theme);
+
+    const toggle = () => {
+        const next = theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch { /* ignore */ }
+        setTheme(next);
+    };
 
     return (
-        <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-        >
-            {theme === 'light' ? '🌙' : '☀️'}
+        <button type="button" className="icon-btn" onClick={toggle} aria-label={`switch to ${theme === "dark" ? "light" : "dark"} theme`}>
+            {theme === "dark" ? <FiSun /> : <FiMoon />}
         </button>
     );
-};
-
-export default ThemeToggle;
+}

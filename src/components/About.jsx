@@ -102,7 +102,7 @@ const About = forwardRef(({ textColor }, ref) => {
                         viewport={{ once: true }}
                     >
                         Building digital experiences that blend aesthetics with functionality. 
-                        Currently crafting interfaces at the intersection of design and code.
+                        Currently a Software Developer at CatalyzeX, shipping full-stack features from UI to API.
                     </motion.p>
 
                     <motion.div 
@@ -121,7 +121,7 @@ const About = forwardRef(({ textColor }, ref) => {
                         <div className="stat-divider" />
                         <div className="stat">
                             <div className="stat-value">
-                                <AnimatedNumber value={10} suffix="+" />
+                                <AnimatedNumber value={15} suffix="+" />
                             </div>
                             <div className="stat-label">Projects</div>
                         </div>

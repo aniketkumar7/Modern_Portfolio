@@ -23,15 +23,83 @@ import linkVaultBanner from "../assets/linkvault.png";
 import cocBanner from "../assets/coc.png";
 import supabaseIcon from "../assets/supabase-dark.svg";
 import nodeIcon from "../assets/nodejs-icon.svg";
+import tsIcon from "../assets/typescript (1).svg";
+import nextIcon from "../assets/nextjs.svg";
+import tydo from "../assets/tydo.png";
+import atelier from "../assets/atelier.png";
+import kaarigar from "../assets/kaarigar.png";
 
 const webProjects = [
     {
+        id: 2,
+        title: "Bookmarky",
+        category: "Full Stack",
+        image: linkVaultBanner,
+        description: "Personal bookmark library that turns links, screenshots and files into searchable folders: rich previews, tags, bulk and browser-bookmark import, PDF export.",
+        liveLink: "https://link-vault-two.vercel.app/",
+        codeLink: "https://github.com/aniketkumar7/LinkVault",
+        technologies: [
+            { name: "React", icon: reactIcon },
+            { name: "TypeScript", icon: tsIcon },
+            { name: "Tailwind", icon: tailwindIcon },
+            { name: "Supabase", icon: supabaseIcon },
+            { name: "Node.js", icon: nodeIcon },
+        ],
+        year: "2026",
+    },
+    {
+        id: 10,
+        title: "Tydo",
+        category: "Productivity",
+        image: tydo,
+        description: "Productivity workspace combining todos (list + kanban), habits and streaks, focus timer, notes, Google Calendar sync, analytics, and a command palette.",
+        liveLink: "https://tydo-rho.vercel.app/",
+        codeLink: "https://github.com/aniketkumar7/Tydo",
+        technologies: [
+            { name: "React", icon: reactIcon },
+            { name: "TypeScript", icon: tsIcon },
+            { name: "Tailwind", icon: tailwindIcon },
+            { name: "Supabase", icon: supabaseIcon },
+        ],
+        year: "2026",
+    },
+    {
+        id: 11,
+        title: "Atelier",
+        category: "Full Stack",
+        image: atelier,
+        description: "Neo-brutalist art gallery and marketplace with collections, commissions, and an admin dashboard (JWT auth, bulk edits, analytics) on Cloudflare Workers + D1.",
+        liveLink: "https://art-marketplace.aniketkumar639597.workers.dev/",
+        codeLink: "https://github.com/aniketkumar7/Atelier",
+        technologies: [
+            { name: "Next.js", icon: nextIcon },
+            { name: "TypeScript", icon: tsIcon },
+            { name: "Cloudflare" },
+        ],
+        year: "2026",
+    },
+    {
+        id: 12,
+        title: "Kaarigar Studio",
+        category: "Client Work",
+        image: kaarigar,
+        description: "SEO-first business site for a Delhi laser cutting and CNC studio. Every page pre-rendered to static HTML, content-driven services, blog and shop.",
+        liveLink: "https://kaarigar-studio-mu.vercel.app/",
+        codeLink: "https://github.com/aniketkumar7/kaarigar-studio",
+        technologies: [
+            { name: "React", icon: reactIcon },
+            { name: "React Router" },
+            { name: "Tailwind", icon: tailwindIcon },
+        ],
+        year: "2026",
+    },
+    {
         id: 1,
-        title: "Food Recipe App",
+        title: "Foodie",
         category: "Full Stack",
         image: food,
-        description: "Community-driven recipe sharing platform with user authentication and secure recipe management.",
-        liveLink: "https://food-app-29au.onrender.com/",
+        description: "Community recipe platform to discover, cook, and share recipes, with AI-powered meal planning and recipe suggestions.",
+        liveLink: "https://food-blog-app-green.vercel.app/",
         codeLink: "https://github.com/aniketkumar7/FOOD_BLOG_APP",
         technologies: [
             { name: "React", icon: reactIcon },
@@ -41,23 +109,6 @@ const webProjects = [
             { name: "Node.js", icon: nodeIcon },
         ],
         year: "2025",
-    },
-    {
-        id: 2,
-        title: "LinkVault",
-        category: "Full Stack",
-        image: linkVaultBanner,
-        description: "Personal link vault to save, organize, and never lose useful URLs (collections, tags, favorites, search).",
-        liveLink: "https://link-vault-beta.vercel.app/",
-        codeLink: "https://github.com/aniketkumar7/LinkVault",
-        technologies: [
-            { name: "React", icon: reactIcon },
-            { name: "Tailwind", icon: tailwindIcon },
-            { name: "Supabase", icon: supabaseIcon },
-            { name: "JavaScript", icon: jsIcon },
-            { name: "Node.js", icon: nodeIcon },
-        ],
-        year: "2026",
     },
     {
         id: 3,
@@ -76,10 +127,10 @@ const webProjects = [
     },
     {
         id: 4,
-        title: "Task Flow",
+        title: "TaskFlow",
         category: "Productivity",
         image: task,
-        description: "Elegant task management app with filtering and local storage.",
+        description: "Minimal, fast, local-first task tracker with priorities, due dates, search, keyboard shortcuts, and light/dark themes.",
         liveLink: "https://task-flow-theta-ruddy.vercel.app/",
         codeLink: "https://github.com/aniketkumar7/Task-Flow",
         technologies: [

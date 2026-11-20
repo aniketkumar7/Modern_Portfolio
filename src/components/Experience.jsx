@@ -3,6 +3,14 @@ import Marquee from "../Loader/Marquee";
 import { useTheme } from "../context/ThemeContext";
 import "./Experience.css";
 
+// Months since start (inclusive), formatted like LinkedIn: "1 yr 3 mos"
+const sinceDuration = (year, month) => {
+    const now = new Date();
+    const total = (now.getFullYear() - year) * 12 + (now.getMonth() + 1 - month) + 1;
+    const y = Math.floor(total / 12), m = total % 12;
+    return [y && `${y} yr${y > 1 ? "s" : ""}`, m && `${m} mo${m > 1 ? "s" : ""}`].filter(Boolean).join(" ");
+};
+
 const Experience = forwardRef(({ textColor }, ref) => {
     const { theme } = useTheme();
     const [activeIndex, setActiveIndex] = useState(0);
@@ -13,14 +21,15 @@ const Experience = forwardRef(({ textColor }, ref) => {
             type: "Full-time",
             company: "CatalyzeX",
             period: "Sep 2025 — Present",
-            duration: "5 mos",
+            duration: sinceDuration(2025, 9),
             location: "Remote",
-            description: "Building and scaling software solutions with focus on web engineering and software design.",
+            description: "Converted to full-time after the internship. Shipping product features end to end, from React/Next.js frontends to FastAPI services.",
             highlights: [
-                "Developing scalable web applications",
-                "Contributing to software architecture decisions"
+                "Building production features across TypeScript frontends and Python/FastAPI backends",
+                "Working on systems that handle sensitive data, with access control and audit trails",
+                "Polishing UI and motion with Framer Motion; reviewing code for security and reliability"
             ],
-            skills: ["Software Design", "Web Engineering", "Full-Stack"],
+            skills: ["React", "Next.js", "TypeScript", "FastAPI", "Python"],
         },
         {
             role: "Software Developer",

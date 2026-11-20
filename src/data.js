@@ -1,41 +1,54 @@
-import bookmarky from "./assets/linkvault.webp";
-import daybuddy from "./assets/tydo.webp";
-import atelier from "./assets/atelier.webp";
-import kaarigar from "./assets/kaarigar.webp";
-import foodie from "./assets/food.webp";
-import netflix from "./assets/movie.webp";
-import taskflow from "./assets/task.webp";
+import bookmarky from "./assets/shot-bookmarky.webp";
+import daybuddy from "./assets/shot-daybuddy.webp";
+import atelier from "./assets/shot-atelier.webp";
+import kaarigar from "./assets/shot-kaarigar.webp";
+import foodie from "./assets/shot-foodie.webp";
+import netflix from "./assets/shot-netflix.webp";
+import taskflow from "./assets/shot-taskflow.webp";
 
 export const GITHUB_USER = "aniketkumar7";
 
 export const profile = {
     name: "Aniket Kumar",
-    role: "software developer",
+    role: "Software Developer",
     company: "CatalyzeX",
     location: "India",
     timeZone: "Asia/Kolkata",
     email: "aniketkumar639597@gmail.com",
     // TODO: resume link
     resume: "",
-    links: [
-        { label: "github", href: "https://github.com/aniketkumar7" },
-        { label: "linkedin", href: "https://www.linkedin.com/in/aniketkumar07/" },
-        { label: "medium", href: "https://medium.com/@aniketkumar639597" },
-        { label: "figma", href: "https://www.figma.com/@aniketkumar7" },
-    ],
+    intro: "I build web products end to end: frontend platforms, the services behind them, and the small details that make them feel fast.",
 };
+
+export const socials = [
+    { label: "GitHub", handle: "@aniketkumar7", href: "https://github.com/aniketkumar7" },
+    { label: "LinkedIn", handle: "in/aniketkumar07", href: "https://www.linkedin.com/in/aniketkumar07/" },
+    { label: "Medium", handle: "@aniketkumar639597", href: "https://medium.com/@aniketkumar639597" },
+    { label: "Figma", handle: "@aniketkumar7", href: "https://www.figma.com/@aniketkumar7" },
+];
+
+export const facts = [
+    { label: "based in", value: "India (IST)" },
+    { label: "currently", value: "Software Developer, CatalyzeX" },
+    { label: "studied", value: "B.Tech CSE, MIET Meerut ’25" },
+    { label: "focus", value: "Frontend platforms, search, DX" },
+];
 
 export const experience = [
     {
         company: "CatalyzeX",
         roles: [
-            { title: "software developer", period: "sep 2025 — present" },
-            { title: "software developer intern", period: "jun 2025 — aug 2025" },
+            { title: "Software Developer", period: "Sep 2025 — Present" },
+            { title: "Software Developer Intern", period: "Jun 2025 — Aug 2025" },
         ],
-        location: "remote",
+        location: "Remote",
         current: true,
         tldr: "Primary frontend owner on four products, growing into backend, services and infra.",
-        stats: ["4 products", "11+ repos", "~800 commits"],
+        stats: [
+            { value: "4", label: "products" },
+            { value: "11+", label: "repos" },
+            { value: "~800", label: "commits" },
+        ],
         highlights: [
             {
                 lead: "Built the RecordX frontend platform.",
@@ -58,93 +71,117 @@ export const experience = [
                 body: "Google and Microsoft OAuth, a leads → prospects → clients CRM, bulk import and export, dashboard analytics, notifications and an activity log.",
             },
         ],
+        // How the role grew, oldest first
+        timeline: [
+            { period: "Jun — Jul 2025", focus: "Client and admin portals for a law firm" },
+            { period: "Jul 2025 — Feb 2026", focus: "Feature owner on JellyFish and Intake Portal" },
+            { period: "Feb — Jun 2026", focus: "Legal-X frontend plus backend domain work" },
+            { period: "Jun 2026 — now", focus: "Architecture: RecordX platform, Global Search" },
+        ],
         stack: ["React", "TypeScript", "Vite", "FastAPI", "Qdrant", "NATS"],
     },
     {
         company: "Tublian",
-        roles: [{ title: "open source intern", period: "apr 2024 — may 2024" }],
-        location: "remote",
-        tldr: "Contributed to 5+ open-source projects and learned to ship in public codebases.",
+        roles: [{ title: "Open Source Intern", period: "Apr 2024 — May 2024" }],
+        location: "Remote",
+        tldr: "Contributed to 5+ open-source projects and learned to ship in shared, public codebases.",
         highlights: [],
         stack: ["Git", "GitHub", "Open source"],
     },
 ];
 
-export const education = {
-    school: "MIET, Meerut",
-    degree: "B.Tech, Computer Science & Engineering",
-    period: "2021 — 2025",
-};
-
-// Folder tints stay light so the glass reads in both themes
 export const projects = [
     {
         name: "Bookmarky",
+        type: "Full-stack web app",
         year: "2026",
-        tint: "#f5cb5c",
         image: bookmarky,
-        blurb: "A personal library for links, screenshots and files. Rich previews, folders, tags, bulk and browser-bookmark import, PDF export.",
-        stack: ["React", "TypeScript", "Supabase", "Node.js"],
         live: "https://link-vault-two.vercel.app/",
         code: "https://github.com/aniketkumar7/LinkVault",
+        oneLiner: "Links from reels, threads and docs get lost in chats and tabs. Bookmarky saves anything with one paste and makes it findable months later.",
+        points: [
+            "Paste any URL and the title, description, image and favicon are fetched for you",
+            "Coloured folders, tags, favourites, and search across titles, notes, URLs and tags",
+            "Bulk and browser-bookmark import, duplicate detection and PDF export",
+        ],
+        stack: ["React", "TypeScript", "Vite", "Supabase", "Node.js"],
     },
     {
         name: "Day Buddy",
+        type: "Productivity workspace",
         year: "2026",
-        tint: "#8fb4ff",
         image: daybuddy,
-        blurb: "One workspace for planning, focus and review: todos in list and kanban, habits and streaks, a focus timer, notes, Google Calendar sync and a command palette.",
-        stack: ["React", "TypeScript", "Zustand", "Supabase"],
         live: "https://tydo-rho.vercel.app/",
         code: "https://github.com/aniketkumar7/Tydo",
+        oneLiner: "Planning, focus and review in one calm app instead of five tabs.",
+        points: [
+            "Todos in list and kanban views, habits with streaks, and a focus timer",
+            "Google Calendar sync, a GitHub inbox, notes and bookmarks in one place",
+            "Command palette, analytics and XP, with Supabase auth (email, Google, GitHub)",
+        ],
+        stack: ["React 19", "TypeScript", "Zustand", "Framer Motion", "Supabase"],
     },
     {
         name: "Atelier",
+        type: "Art marketplace",
         year: "2026",
-        tint: "#ff8f8f",
         image: atelier,
-        blurb: "A neo-brutalist art gallery and marketplace with collections, commissions and a full admin dashboard, running on Cloudflare Workers + D1.",
-        stack: ["Next.js", "TypeScript", "Cloudflare D1", "Cloudinary"],
         live: "https://art-marketplace.aniketkumar639597.workers.dev/",
         code: "https://github.com/aniketkumar7/Atelier",
+        oneLiner: "A neo-brutalist storefront and admin for selling original art, wallpapers and Figma resources.",
+        points: [
+            "Gallery with filters, curated collections, commission requests and WhatsApp inquiries",
+            "Admin with JWT auth (PBKDF2 via Web Crypto), Cloudinary uploads, drag-to-reorder and bulk edits",
+            "Built-in analytics, newsletter and testimonial moderation, served from the edge",
+        ],
+        stack: ["Next.js 16", "TypeScript", "Cloudflare Workers", "D1", "Cloudinary"],
     },
     {
-        name: "Kaarigar",
+        name: "Kaarigar Studio",
+        type: "Client website",
         year: "2026",
-        tint: "#ffa26b",
         image: kaarigar,
-        blurb: "Client site for a Delhi laser cutting and CNC studio. Every page pre-rendered to static HTML for SEO, content-driven services, blog and shop.",
-        stack: ["React Router v7", "Tailwind v4"],
         live: "https://kaarigar-studio-mu.vercel.app/",
         code: "https://github.com/aniketkumar7/kaarigar-studio",
+        oneLiner: "Marketing site for a Delhi laser cutting and CNC workshop, built to rank on search and turn visits into quotes.",
+        points: [
+            "Every page pre-rendered to static HTML, with sitemap and robots generated at build",
+            "Content-driven: adding a service, industry or material updates pages, nav and sitemap",
+            "Services, industries, materials, blog and shop, with quote and WhatsApp CTAs throughout",
+        ],
+        stack: ["React 19", "React Router v7", "Tailwind v4", "Vite"],
     },
     {
         name: "Foodie",
+        type: "Community platform",
         year: "2025",
-        tint: "#f7b955",
         image: foodie,
-        blurb: "A community recipe platform to discover, cook and share recipes, with AI meal planning and recipe suggestions.",
-        stack: ["React", "Node.js", "MongoDB", "Tailwind"],
         live: "https://food-blog-app-green.vercel.app/",
         code: "https://github.com/aniketkumar7/FOOD_BLOG_APP",
+        oneLiner: "Discover, cook and share recipes, with AI helping you plan meals from what you have.",
+        points: [
+            "Accounts, recipe publishing and management with secure ownership checks",
+            "AI recipe ideas and meal planning, plus a weekly feed of top recipes",
+            "Light and dark themes with a playful, illustrated brand",
+        ],
+        stack: ["React", "Node.js", "MongoDB", "Tailwind"],
     },
+];
+
+export const earlier = [
     {
         name: "Netflix GPT",
         year: "2024",
-        tint: "#ff6b6b",
         image: netflix,
-        blurb: "Movie discovery with GPT-powered recommendations on top of the TMDB API, with Firebase auth.",
-        stack: ["React", "Tailwind", "Firebase", "TMDB API"],
+        blurb: "GPT-powered movie suggestions on top of TMDB, with Firebase auth.",
         live: "https://netflix-gpt-jade-five.vercel.app/",
         code: "https://github.com/aniketkumar7/NETFLIX_GPT",
     },
     {
         name: "TaskFlow",
         year: "2026",
-        tint: "#e98bf0",
         image: taskflow,
-        blurb: "A minimal, local-first task tracker with priorities, due dates, search and keyboard shortcuts.",
-        stack: ["HTML", "CSS", "JavaScript"],
+        blurb: "A minimal, local-first task tracker with priorities, due dates and shortcuts.",
         live: "https://task-flow-theta-ruddy.vercel.app/",
         code: "https://github.com/aniketkumar7/Task-Flow",
     },
@@ -156,8 +193,8 @@ export const designs = [
 ];
 
 export const stack = [
-    { group: "language", items: ["TypeScript", "JavaScript", "Python", "C++"] },
-    { group: "frontend", items: ["React", "Next.js", "Vite", "Tailwind", "Framer Motion", "Zustand"] },
-    { group: "backend", items: ["Node.js", "FastAPI", "Supabase", "MongoDB", "Qdrant", "NATS"] },
-    { group: "tools", items: ["Git", "Figma", "Vercel", "Cloudflare", "AWS"] },
+    { group: "Language", items: ["TypeScript", "JavaScript", "Python", "C++"] },
+    { group: "Frontend", items: ["React", "Next.js", "Vite", "Tailwind", "Framer Motion", "Zustand"] },
+    { group: "Backend", items: ["Node.js", "FastAPI", "Supabase", "MongoDB", "Qdrant", "NATS"] },
+    { group: "Tools", items: ["Git", "Figma", "Vercel", "Cloudflare", "AWS"] },
 ];

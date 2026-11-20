@@ -47,10 +47,12 @@ export default function NowStrip() {
     return (
         <a className="now" href={push.url} target="_blank" rel="noreferrer">
             <span className="now-dot" aria-hidden="true" />
-            <span className="now-label">latest push</span>
-            <span className="now-repo">{push.repo}</span>
-            {push.message && <span className="now-msg">{push.message}</span>}
+            <span className="now-head">
+                <span className="now-label">latest push</span>
+                <span className="now-repo">{push.repo}</span>
+            </span>
             <span className="now-time">{ago(push.at)}</span>
+            {push.message && <span className="now-msg">“{push.message}”</span>}
         </a>
     );
 }

@@ -11,23 +11,33 @@ function Job({ job }) {
     return (
         <article className="job">
             <header className="job-head">
-                <div>
-                    <h3 className="job-company">
-                        {job.company}
-                        {job.current && <span className="badge">working</span>}
-                    </h3>
-                    {job.roles.map((r) => (
-                        <div key={r.title} className="job-role">
-                            <span>{r.title}</span>
-                            <span className="mono faint">{r.period}</span>
+                <h3 className="job-company">
+                    {job.company}
+                    {job.current && <span className="badge">working</span>}
+                </h3>
+                <span className="mono faint">{job.location}</span>
+            </header>
+            <div className="job-roles">
+                {job.roles.map((r) => (
+                    <div key={r.title} className="job-role">
+                        <span>{r.title}</span>
+                        <span className="mono faint">{r.period}</span>
+                    </div>
+                ))}
+            </div>
+
+            <p className="job-tldr"><span className="tldr mono">tl;dr</span> {job.tldr}</p>
+
+            {job.stats && (
+                <dl className="stats">
+                    {job.stats.map((s) => (
+                        <div key={s.label}>
+                            <dt className="stat-value">{s.value}</dt>
+                            <dd className="mono faint">{s.label}</dd>
                         </div>
                     ))}
-                </div>
-                <span className="mono faint job-loc">{job.location}</span>
-            </header>
-
-            <p className="job-tldr">{job.tldr}</p>
-            {job.stats && <p className="mono faint job-stats">{job.stats.join(" · ")}</p>}
+                </dl>
+            )}
 
             {shown.length > 0 && (
                 <ul className="job-list">
@@ -37,9 +47,20 @@ function Job({ job }) {
                 </ul>
             )}
             {hidden > 0 && (
-                <button type="button" className="more" onClick={() => setAll(!all)}>
-                    {all ? "show less ↑" : `the long version (+${hidden}) ↓`}
+                <button type="button" className="more mono" onClick={() => setAll(!all)} aria-expanded={all}>
+                    {all ? "Show less ↑" : `The long version (+${hidden}) ↓`}
                 </button>
+            )}
+
+            {job.timeline && (
+                <ol className="timeline">
+                    {job.timeline.map((t) => (
+                        <li key={t.period}>
+                            <span className="mono faint">{t.period}</span>
+                            <span>{t.focus}</span>
+                        </li>
+                    ))}
+                </ol>
             )}
 
             <div className="chips">

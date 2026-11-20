@@ -38,7 +38,7 @@ export default function GitHubGraph() {
                 </div>
             </div>
             <div className="graph-foot mono faint">
-                <span>{data.total?.lastYear ?? 0} contributions in the last year</span>
+                <span><span className="graph-total">{data.total?.lastYear ?? 0}</span> contributions in the last year</span>
                 <span className="graph-legend">
                     less {[0, 1, 2, 3, 4].map((l) => <span key={l} className="graph-cell" data-l={l} />)} more
                 </span>

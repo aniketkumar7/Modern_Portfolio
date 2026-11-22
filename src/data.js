@@ -24,8 +24,6 @@ export const profile = {
     github: "https://github.com/aniketkumar7",
     // TODO: resume link
     resume: "",
-    // GoatCounter site code (the "xyz" in xyz.goatcounter.com). Empty = visitor count hidden.
-    goatcounter: "",
     intro: "I build web products end to end: frontend platforms, the services behind them, and the small details that make them feel fast.",
 };
 

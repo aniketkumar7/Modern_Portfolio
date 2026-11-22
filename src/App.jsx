@@ -9,9 +9,8 @@ import Projects from "./components/Projects";
 import Insights from "./components/Insights";
 import SideNav from "./components/SideNav";
 import Annot from "./components/Annot";
-import Visitors from "./components/Visitors";
 import { principles, profile, socials, stack } from "./data";
-import banner from "./assets/banner.webp";
+import banner from "./assets/banner.jpg";
 import avatar from "./assets/avatar.webp";
 import rest from "./assets/rest.webp";
 
@@ -171,7 +170,7 @@ export default function App() {
                 <div id="top" className="hero">
                     <Annot side="right" top="330px">live from GitHub, updates on every push</Annot>
                     <div className="banner">
-                        <img src={banner} alt="Illustration of two figures walking up a flowered hillside under towering clouds" fetchPriority="high" />
+                        <img src={banner} alt="Sunny green meadow with a river, boat, and towering clouds" fetchPriority="high" />
                         <BannerClock time={time} date={date} day={day} />
                     </div>
 
@@ -186,7 +185,6 @@ export default function App() {
                             <div className="hero-pills">
                                 <span className="hpill"><FiMapPin aria-hidden="true" /> India · IST</span>
                                 <span className="hpill"><span className="live-dot" /> open to work</span>
-                                <Visitors />
                             </div>
                             <div className="hero-actions">
                                 <a className="btn btn-solid" href="#projects">See my work</a>

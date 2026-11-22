@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import { FiArrowUpRight, FiBookmark, FiCheck, FiCopy, FiGithub, FiLayers, FiLinkedin, FiMail, FiMapPin, FiMoon, FiServer, FiSun, FiZap } from "react-icons/fi";
 import { SiFigma, SiMedium } from "react-icons/si";
 import ThemeToggle from "./components/ThemeToggle";

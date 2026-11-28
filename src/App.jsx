@@ -13,6 +13,7 @@ import { principles, profile, socials, stack } from "./data";
 import banner from "./assets/banner.jpg";
 import avatar from "./assets/avatar.webp";
 import rest from "./assets/rest.webp";
+import SignaturePreloader from "./components/SignaturePreloader";
 
 const NAV = [
     { href: "#about", label: "About" },
@@ -150,9 +151,18 @@ const Section = ({ id, title, note, wide, annot, children }) => (
 
 export default function App() {
     const { time, date, day } = useClock();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const id = window.setTimeout(() => setLoading(false), 3100);
+        return () => window.clearTimeout(id);
+    }, []);
 
     return (
         <MotionConfig reducedMotion="user">
+            <AnimatePresence mode="wait">
+                {loading && <SignaturePreloader key="preloader" onComplete={() => setLoading(false)} />}
+            </AnimatePresence>
             <a className="skip" href="#main">Skip to content</a>
             <header className="topbar">
                 <div className="wrap topbar-inner">
